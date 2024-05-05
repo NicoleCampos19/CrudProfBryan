@@ -8,6 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,7 +29,13 @@ class MainActivity : AppCompatActivity() {
         val txtPrecio = findViewById<EditText>(R.id.txtPrecio)
         val txtCantidad = findViewById<EditText>(R.id.txtCantidad)
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
-        val btnEliminar = findViewById<Button>(R.id.btnEliminar)
+        val rcvDatos = findViewById<RecyclerView>(R.id.rvcDatos)
+
+        //1- Ponerle un layout a mi recycleview
+        rcvDatos.layoutManager = LinearLayoutManager(this)
+
+        //2- Crear un adptador
+        val miAdaptador = Adaptador(ListaDeDatos)
 
         //2 - Programar el boton de agregar
         btnAgregar.setOnClickListener {
@@ -45,21 +53,8 @@ class MainActivity : AppCompatActivity() {
                 addProducto.executeUpdate()
             }
         }
-
-        //3 - Programar el boton eliminar
-        btnEliminar.setOnClickListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                //Guardar datps
-                //1 - Crear un objeto de la clase conexion
-                val objConexion = Conexion().cadenaConexion()
-                //2 - Crear una variable que sea igual a un PrepareStatement
-                val deleteProducto =
-                    objConexion?.prepareStatement("delete from tbProductos1 values(?, ?, ?)")!!
-                deleteProducto.setString(1, txtNombreProducto.text.toString())
-                deleteProducto.setInt(2, txtPrecio.text.toString().toInt())
-                deleteProducto.setInt(3, txtCantidad.text.toString().toInt())
-                deleteProducto.executeUpdate()
-            }
-        }
     }
+}
+class Adaptador(private val Datos:Array<String>){
+
 }
