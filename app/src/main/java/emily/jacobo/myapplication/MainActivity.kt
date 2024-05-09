@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         rcvDatos.layoutManager = LinearLayoutManager(this)
 
         //2- Crear un adptador
-        val miAdaptador = Adaptador(ListaDeDatos)
+
 
         //2 - Programar el boton de agregar
         btnAgregar.setOnClickListener {
@@ -54,7 +54,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-}
-class Adaptador(private val Datos:Array<String>){
-
 }
