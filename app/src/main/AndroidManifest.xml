@@ -17,12 +17,7 @@
         <activity
             android:name=".activity2_itam_card"
             android:exported="false" />
-        <activity
-            android:name=".activity_itam_card+"
-            android:exported="false" />
-        <activity
-            android:name=".activity_itam_card"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,6 +1,7 @@
 package emily.jacobo.myapplication
 
 import Modelo.Conexion
+import Modelo.ListaProductos
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.sql.Statement
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,11 +33,17 @@ class MainActivity : AppCompatActivity() {
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
         val rcvDatos = findViewById<RecyclerView>(R.id.rvcDatos)
 
+
         //1- Ponerle un layout a mi recycleview
         rcvDatos.layoutManager = LinearLayoutManager(this)
 
-        //2- Crear un adptador
+        //////////Función para mostrar datos
+        fun obtenerDatos(): List<ListaProductos>{
+            val objConexion = Conexion().cadenaConexion()
 
+            val statement =objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("select * from tbProductos1")!!
+        }
 
         //2 - Programar el boton de agregar
         btnAgregar.setOnClickListener {

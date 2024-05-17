@@ -1,19 +1,22 @@
 package RecyclerViewHelpers
 
 import Modelo.ListaProductos
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import emily.jacobo.myapplication.R
 
-class Adaptador(private var Datos: List<ListaProductos>): RecyclerView.Adapter<ViewHolderr> {
+class Adaptador(private var Datos: List<ListaProductos>): RecyclerView.Adapter<ViewHolderr>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderr {
-        TODO("Not yet implemented")
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity2_itam_card,parent,false)
+        return ViewHolderr(vista)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = Datos.size
 
     override fun onBindViewHolder(holder: ViewHolderr, position: Int) {
-        TODO("Not yet implemented")
+        val producto = Datos[position]
+        holder.textView.text = producto.nombreProducto
     }
+
 }
